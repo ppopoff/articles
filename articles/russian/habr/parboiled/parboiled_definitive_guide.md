@@ -77,7 +77,8 @@ Parboiled - библиотека позволяющая вам с легкост
     [многих проектах](https://github.com/sirthias/parboiled/wiki/Projects-using-parboiled).
 
   Небольшой benchmark проведенный Александром Мыльцевым (разработчиком библиотеки) взято 
-  [отсюда](http://myltsev.name/ScalaDays2014/#/), показывает что скорость разбора приближается к хэндмейд парсерам
+  [отсюда](http://myltsev.name/ScalaDays2014/#/), показывает что скорость разбора приближается к "древним магическим
+  парсерам эльфийскйо работы".
 
 ### Parboiled2 vs handwritten Json parsers
   
