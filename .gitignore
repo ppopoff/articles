@@ -1,0 +1,7 @@
+.idea
+
+# no xml allowed
+*.xml
+
+# vim swap files
+.sw*
