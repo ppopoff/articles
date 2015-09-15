@@ -215,6 +215,9 @@ Parboiled - библиотека позволяющая вам с легкост
         val EOI = '\uFFFF'
   - ANY - соптавляет все символы, кроме EOI
 
+>Если вы не объявите EOI в конце главного правила, и при парсинге возникнет ошибка, вы об этой ошибке не узнаете, так
+как парсер будет думать что есть еще входные данные. Поэтому вас всегда ждет Success при любом раскладе.
+
 Так же в Parboiled2 можно объявлять диапазоны символов. Делается это так:
 
     // Сматчат по одному символу
@@ -560,15 +563,15 @@ and mutable base classes you might choose to use, however, there is nothing that
 the org.parboiled.trees package to get started.
 
 ## Синтаксические предикаты
-TODO: Переместить чуть ниже??
+TODO:
 Test and TestNot rules never affect the value stack. parboiled always resets the value stack back to a saved
 snapshot after a Test or TestNot rule has matched. You can therefore be sure that syntactic predicates will never
 “mess” with your value stack setup, even if they contain parser actions or reference other rules that do.
-
 test(condition: Boolean): Rule0
 
-# Error reporting
+# Отчеты об ошибках 
 TODO: from the pb1 documentation
+Правильное обращения с 
 The proper handling of illegal input (with regard to the language defined by your grammar) is a key feature of any
 parser that is to be used in real-world projects, and it’s one of the big drawbacks of regular expressions. For example,
 if you have a user provide input in a custom DSL you can be sure he or she will make syntactic and/or semantic mistakes
