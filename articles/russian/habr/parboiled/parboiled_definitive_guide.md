@@ -418,7 +418,6 @@ Parboiled. И средство это называется Value Stack или С
 выступает временным хранилищем для действий (Parser Actions) над извлекаемыми при помощи правил объектами. Именно этому
 самому стеку мы должны дать подсказку при объявлении рекурсивных правил. Типизация стека значений проверяется на этапе
 компиляции.
-
 Для того чтобы элементы были помещены на Стек значений, их необоходимо захватить, это отразится на типе ваших правил.
 Типы правил так же отражают количетсво захваченных элементов и их тип.
 
@@ -446,10 +445,8 @@ Parboiled. И средство это называется Value Stack или С
 техникой (в случае если размер и количество извлкаемых нами данных заранее не известны).
 С помощью действий можно формировать абстрактные синтаксические деревья
 ([AST](https://en.wikipedia.org/wiki/Abstract_syntax_tree)).
-
 Так же действия можно использовать для "вычислений на месте", как это сделано в примере с
 [калькулятором](http://bit.ly/1iJg7zP).
-
 
 ### Захватывающие истории
 Как было сказано выше, для того чтобы совершить какое-то дейстие над данными нам надо их захватить. Для этого существует
@@ -457,11 +454,9 @@ Parboiled. И средство это называется Value Stack или С
 Предположим у нас есть некое правило Rule0 из которого мы хотим что-то вытащить:
 
     def User: Rule = rule { FirstName ~ Separator ~ LastName }
-    
 Теперь нам нужно решить, что мы будем захватывать. Очевидно что разделитель не представляет художественной ценности:
 
     def User: Rule2[String, String] = rule { capture(FirstName) ~ Separator ~ capture(LastName) }
-    
 И с этого момента наше правило уже не Rule0. Данные захваченны и оправленны в Стек значений. Впрочем, тип можно не
 указывать, компилятор и так все поймет сам.
 
@@ -494,12 +489,6 @@ TODO: Рассказать про правило ~% в parboiled и про то 
 Функция push помещает указанные данные на стек значений. Собственно функция как функция. null ей лучше не подсосывать.
 TODO: 
 
-## Синтаксические предикаты
-TODO: Переместить чуть ниже??
-Test and TestNot rules never affect the value stack. parboiled always resets the value stack back to a saved
-snapshot after a Test or TestNot rule has matched. You can therefore be sure that syntactic predicates will never
-“mess” with your value stack setup, even if they contain parser actions or reference other rules that do.
-
 ## Генерация AST
 TODO: from the pb1 documentation
 Contrary to the parse tree, which is very closely tied to the grammar by its direct relation to the grammar rules,
@@ -509,6 +498,11 @@ There are absolutely no restrictions on the type of your AST nodes. parboiled do
 and mutable base classes you might choose to use, however, there is nothing that forces you to do so. Take a look at
 the org.parboiled.trees package to get started.
 
+## Синтаксические предикаты
+TODO: Переместить чуть ниже??
+Test and TestNot rules never affect the value stack. parboiled always resets the value stack back to a saved
+snapshot after a Test or TestNot rule has matched. You can therefore be sure that syntactic predicates will never
+“mess” with your value stack setup, even if they contain parser actions or reference other rules that do.
 
 # Error reporting
 TODO: from the pb1 documentation
