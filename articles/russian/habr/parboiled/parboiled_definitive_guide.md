@@ -77,7 +77,7 @@ Parboiled — библиотека позволяющая вам с легкос
   - Читаемость, сравнимая с различными сортами BNF (по моему мнению даже и лучше).
 
   - Можно использовать всю мощь PEG и свободно разбирать рекурсивные структуры данных, в то время как регулярные
-    выражения не могут этого [по определению][hier]. Да, регулярными выражениями вы не распарсите JSON или даже
+    выражения не могут этого [по определению][hier]. Да, регулярными выражениями вы не распарсите ни JSON, ни даже
     простейшее арифметическое выражение, что уж говорить о языках программирования. На StackOverflow есть
 	[небезызвестная цитата в тему][paris]:
 
@@ -1551,12 +1551,13 @@ CharPredicate.All работает медленно для больших диа
 для вас полезной, а в лучшем - станет руководстком к действию.
 
 
-Использованные источники
-========================
- - [Юзергруппа](https://groups.google.com/forum/#!topic/parboiled-user/Ygb_M6XU5P8) посвященная Parboiled2
-   Здесь вы можете задать все интересующие вас вопросы. Вам помогут.
- - Презентация Александра Мыльцева [Видео](http://www.youtube.com/watch?v=qZg4D62K4aQ)
- - [Слайды](http://myltsev.name/ScalaDays2014/#/) к презентации Александра [ENG]
- - Официальная [документация](https://github.com/sirthias/parboiled2/blob/master/README.rst)
- - [Примеры](https://github.com/sirthias/parboiled2/tree/master/examples/src/main/scala/org/parboiled2/examples)
-   исходного кода
+# Использованные источники
+
+ - [Список рассылки проекта Parboiled][mail-list]
+ - [Презентация Александра Мыльцева][myltsev-presentation] и [слайды к ней][myltsev-slides]
+ - [Примеры кода из репозитория Parboiled][pb-examples]
+
+[mail-list]:            https://groups.google.com/forum/#!topic/parboiled-user/Ygb_M6XU5P8
+[myltsev-presentation]: http://www.youtube.com/watch?v=qZg4D62K4aQ
+[myltsev-slides]:       http://myltsev.name/ScalaDays2014/#/
+[pb-examples]:          https://github.com/sirthias/parboiled2/tree/master/examples/src/main/scala/org/parboiled2/examples
