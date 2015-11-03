@@ -152,7 +152,7 @@ Parboiled2) проверил, насколько сильно Parboiled прои
 (как минимум тех, что идут в комплекте с библиотекой классов Java). Вот немного подтверждающих данных
 из [списка рассылки][bench-re]:
 
-      Тест-кейс                           │ Время, мс │ 
+      Тест-кейс                           │ Время, мс │
     ──────────────────────────────────────┼───────────┼───────────────────────────────────
       Parboiled2 (warmup)                 │   1621.21 │ ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
       Parboiled2                          │    409.16 │ ▇▇▇▇▇▇▇▇
@@ -172,7 +172,7 @@ Parboiled2) проверил, насколько сильно Parboiled прои
       Тест-кейс                           │ Время, мс │
     ──────────────────────────────────────┼───────────┼─────────────────────────────────
       Parboiled1JsonParser                |     73.81 | ▇
-      Parboiled2JsonParser                |     10.49 | ▇ 
+      Parboiled2JsonParser                |     10.49 | ▇
       ParserCombinators                   |   2385.78 | ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇
 
 [bench-spc]: https://groups.google.com/forum/#!topic/parboiled-user/bGtdGvllGgU
@@ -1384,7 +1384,7 @@ IDE-подобных инструментов такое положение де
    [заинтересован][mattias-intrest] в разработке этой фичи, так что возможно ее появление в следующих релизах.
 
 [backtracking]:    https://en.wikipedia.org/wiki/Backtracking
-[mattias-intrest]: https://groups.google.com/d/msg/parboiled-user/b7PH49fiFco/gGt46xe3Ae4J 
+[mattias-intrest]: https://groups.google.com/d/msg/parboiled-user/b7PH49fiFco/gGt46xe3Ae4J
 
 
 # Goodies
@@ -1418,7 +1418,7 @@ Parboiled1 построен так, что на каждое правило с N
         )
       }
     }
-	  
+
 Пусть выглядит убого, зато проблема решена.
 
 
