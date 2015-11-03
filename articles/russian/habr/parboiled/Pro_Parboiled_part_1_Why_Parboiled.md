@@ -253,4 +253,6 @@ Parboiled2) проверил, насколько сильно Parboiled прои
 [backtracking]: https://en.wikipedia.org/wiki/Backtracking
 [mattias-wish]: https://groups.google.com/d/msg/parboiled-user/b7PH49fiFco/gGt46xe3Ae4J
 
-Продолжение следует...
+В следующей части я расскажу о языке описания правил (Rule DSL). Так же мы напишем простой распознаватель для
+древовидного формата конфигурационных файлов.
+
