@@ -13,7 +13,7 @@
 [Planck]: https://bitbucket.org/camlspotter/planck
 [spc]: https://github.com/scala/scala-parser-combinators
 [sm]:  http://mvnrepository.com/artifact/org.scala-lang.modules
-[a3]:  http://www.scala-lang.org/old/node/8610.
+[a3]:  http://www.scala-lang.org/old/node/8610
 
 Эта серия статей посвящена библиотеке [Parboiled][pb] — мощной альтернативе и возможной замене для Scala Parser
 Combinators. В ней мы подробно рассмотрим работу с текущей версией библиотеки — Parboiled2, а также уделим внимание
