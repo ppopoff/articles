@@ -56,8 +56,7 @@
 можно использовать для вычисления «на месте», как это сделано в [примере с калькулятором](calc).
 
 [ast]: https://ru.wikipedia.org/wiki/Абстрактное_синтаксическое_дерево
-[calc]: 
-https://github.com/sirthias/parboiled2/blob/master/examples/src/main/scala/org/parboiled2/examples/Calculator1.scala
+[calc]: https://github.com/sirthias/parboiled2/tree/master/examples/src/main/scala/org/parboiled2/examples
 
 
 ## Захватывающие истории
