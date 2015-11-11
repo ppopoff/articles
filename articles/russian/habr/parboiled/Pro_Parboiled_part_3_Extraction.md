@@ -110,7 +110,7 @@
 оператор `~>` и к типизированному правилу, например, следующее правило сопоставляет целое число, но поместит в стек не его,
 а его удвоенное значение:
 
-    def TwoTimesLarger = UnsignedInteger ~> (i => i * 2)
+    def TwoTimesLarger = rule { UnsignedInteger ~> (i => i * 2) }
 
 Тип правила `TwoTimesLarger` так и останется `Rule1[Int]`, только на стеке будет лежать другое значение.
 
@@ -123,7 +123,7 @@
 порядку записи операций захвата:
 
     def UserWithLambda: Rule2[String, String] = rule {
-      (capture(FirstName) ~ Separator ~ capture(LastName)) ~> ((firstName, lastName) => ...)
+      capture(FirstName) ~ Separator ~ capture(LastName) ~> ((firstName, lastName) => ...)
     }
 
 Благодаря оператору действия мы можем уменьшать количество значений на стеке:
@@ -136,17 +136,17 @@
 Лямбда не обязана принимать *все* параметры со стека, можно ограничиться последними N значениями (помним, что
 лямбда забирает аргументы с конца стека):
 
-    def bar = (foo: Rule2[Int, String]) ~> (_.toDouble)
+    (foo: Rule2[Int, String]) ~> (_.toDouble)
     // bar: Rule2[Int, Double].
 
 Ничего не мешает нам попробовать скормить правилу лямбда-функцию, не имеющую аргументов, с предсказуемым результатом:
 
-    def bar = (foo: Rule2[String, Int]) ~> (() => 42)
+    (foo: Rule2[String, Int]) ~> (() => 42)
     // bar: Rule2[String, Int].
 
 У Parboiled2 есть более мощные инструменты, например, возможность вернуть из лямбды на стек сразу группу значений:
 
-    def bar = (foo: Rule1[Event]) ~> (e => e::DateTime.now()::"localhost"::HNil)
+    (foo: Rule1[Event]) ~> (e => e::DateTime.now()::"localhost"::HNil)
     // bar: RuleN[Event::DateTime::String::HNil]
 
 Фактически мы конструируем фирменный шейплессовский `HList`. Тип результирующего правила будет
@@ -155,14 +155,14 @@
 Аналогично можно забирать значения со стека значений, ничего не отдавая взамен: для этого лямбда всего-навсего должна «возвращать»
 тип `Unit`. Типом получившегося правила, как вы наверное догадались, будет `Rule0`:
 
-    def bar = (foo: rule1[String]) ~> (println(_))
+    (foo: rule1[String]) ~> (println(_))
     // bar: Rule0
 
 Кроме того, оператор действия предлагает особо сладкий сахар для case-классов:
 
     case class Person(name: String, age: Int)
 
-    def bar = (foo: Rule2[String, Int]) ~> Person
+    (foo: Rule2[String, Int]) ~> Person
     // bar: Rule1[Person]
 
 Правда нужно отметить, что компилятор может и не переварить этот сахар, если для case-класса определен companion object.
