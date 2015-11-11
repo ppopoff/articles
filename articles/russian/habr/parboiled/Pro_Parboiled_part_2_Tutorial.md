@@ -451,7 +451,7 @@ runners), которые приходится дополнительно выз�
 
     val WhitespaceChars = "\n\t "
     def WhiteSpace = rule { anyOf(WhitespaceChars) }
-    def OptWs      = rule { zeroOrMore(Whitespace) }
+    def OptWs      = rule { zeroOrMore(WhiteSpace) }
 
 Правило, описывающее перевод строки мы объявляли ранее:
 
