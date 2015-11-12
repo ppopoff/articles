@@ -13,7 +13,7 @@
  - Часть 4. Суровая действительность
 
 [part1]: http://habrahabr.ru/post/270233
-[part1]: http://habrahabr.ru/post/270233
+[part2]: http://habrahabr.ru/post/270531
 [part3]: http://habrahabr.ru/post/270609
 
 <habracut>
