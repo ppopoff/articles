@@ -100,7 +100,7 @@
       capture(Digit.+) ~> (numStr => numStr.toInt)
     }
 
-В этой ситуации поощряется использование фирменного скаловского плейсходера:
+В этой ситуации поощряется использование фирменного скаловского плейсхолдера:
 
     def UnsignedInteger: Rule1[Int] = rule {
       capture(Digit.+) ~> (_.toInt)
@@ -137,17 +137,17 @@
 лямбда забирает аргументы с конца стека):
 
     (foo: Rule2[Int, String]) ~> (_.toDouble)
-    // bar: Rule2[Int, Double].
+    // foo: Rule2[Int, Double].
 
 Ничего не мешает нам попробовать скормить правилу лямбда-функцию, не имеющую аргументов, с предсказуемым результатом:
 
     (foo: Rule0) ~> (() => 42)
-    // bar: Rule1[Int].
+    // foo: Rule1[Int].
 
 У Parboiled2 есть более мощные инструменты, например, возможность вернуть из лямбды на стек сразу группу значений:
 
     (foo: Rule1[Event]) ~> (e => e::DateTime.now()::"localhost"::HNil)
-    // bar: RuleN[Event::DateTime::String::HNil]
+    // foo: RuleN[Event::DateTime::String::HNil]
 
 Фактически мы конструируем фирменный шейплессовский `HList`. Тип результирующего правила будет
 `RuleN[Event::DateTime::String::HNil]`.
@@ -156,14 +156,14 @@
 тип `Unit`. Типом получившегося правила, как вы наверное догадались, будет `Rule0`:
 
     (foo: rule1[String]) ~> (println(_))
-    // bar: Rule0
+    // foo: Rule0
 
 Кроме того, оператор действия предлагает особо сладкий сахар для case-классов:
 
     case class Person(name: String, age: Int)
 
     (foo: Rule2[String, Int]) ~> Person
-    // bar: Rule1[Person]
+    // foo: Rule1[Person]
 
 Правда нужно отметить, что компилятор может и не переварить этот сахар, если для case-класса определен companion object.
 Тогда придется добавить лямбду, немного подчеркиваний и записать: `~> (Person(_, _))`.
