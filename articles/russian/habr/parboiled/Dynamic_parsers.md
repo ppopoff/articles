@@ -70,12 +70,13 @@ Java Grok позволяет строить парсер "на лету" на о
     // Описываем шаблоны для каждого из извлекаемых полей.
     // Структура следующая: %{ИМЯ_ШАБЛОНА_В_ФАЙЛЕ:имяИзвлекаемогоЗначения}
     val httpTemplate = "%{HTTPDATE:timestamp}"
-    val statusTemplate = "%{IPORHOST:response}"
+    val statusTemplate = "%{NUMBER:status}"
 
     // Заменяем ключи на шаблоны
+    // Используем regexp для возможных модификаторов
     val preparedLogFormat =
       logFormat.replaceAllLiterally("%t", httpTemplate)
-               .replaceAllLiterally("%>s", statusTemplate)
+               .replaceAll("%[<>]?s", status)
                // ... и так для всех возможных вхождений
 
 На основе полученного формата, с шаблонами вместо ключей, создаем объект Grok:
