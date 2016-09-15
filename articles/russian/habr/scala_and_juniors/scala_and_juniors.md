@@ -126,8 +126,7 @@ Haskell.
 
 И да, стандартный механизм сопоставления с образцом никто не отменял.
 
-> Так же кортежи можно использовать как анонимные помойки, и черт возьми
-> это оправданно
+> Так же кортежи можно использовать как анонимные помойки, и черт возьми это оправданно
 
 Дело в том что во многих функциональных языках существует сопоставление с
 образцом на уровне сигнатур функций:
@@ -162,13 +161,22 @@ Haskell.
 
 # Options
 
-    TODO:
-
 Неправильное использование Option, является распространенной проблемой. Option,
 нужен для того чтобы показать возможно отсутствующую сущность.
 
 Один из способов правильно инициализировать сущности.
 Способ концептуально продемонстрировать наличие и отсутствие некоей сущности.
+
+    if (option.isEmpty)
+      default
+    else
+      // без проверки взорвется
+      option.get
+
+
+Правильнее
+
+    option getOrElse default
 
 
 ## Option и flow
@@ -234,7 +242,10 @@ List? Может :) Конечно же с точки зрения теории 
 
 
 # Литература
-Очень рекомендую посмотреть доклад Одерски [Scala with style](scala_with_style).
+Очень рекомендую посмотреть
+ - [Scala with style](scala_with_style).
+ - [May Your Data Ever Be Coherent](coherent_data).
+ - [Scala style guide от Databricks](databricks-style-guide)
 
 
 [1]: https://wiki.haskell.org/Newtype
@@ -242,3 +253,5 @@ List? Может :) Конечно же с точки зрения теории 
 [tuples_in_haskell]: http://stackoverflow.com/questions/15558278/how-to-get-nth-element-from-a-10-tuple-in-haskell
 [tuples_in_sml]: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/lecture3.htm
 [scala_with_style]: https://www.youtube.com/watch?v=kkTFx3-duc8
+[coherent_data]: https://www.youtube.com/watch?v=gVXt1RG_yN0
+[databricks-style-guide]: https://github.com/databricks/scala-style-guide
