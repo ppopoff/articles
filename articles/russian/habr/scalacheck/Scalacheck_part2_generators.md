@@ -756,8 +756,7 @@ Exception in thread "main" java.lang.StackOverflowError
     // Some(Leaf(2147483647))
     // Some(Leaf(489549235))
 
-[тут будет картинка: http://risovach.ru/kartinka/10629542].
-Снова!
+[stack overflow](https://habrastorage.org/files/52f/ad5/dcd/52fad5dcdb664a788f414993b40503ae.jpg "Снова!")
 
 ```
 Exception in thread "main" java.lang.StackOverflowError
