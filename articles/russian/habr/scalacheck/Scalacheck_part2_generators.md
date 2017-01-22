@@ -728,7 +728,7 @@ ScalaCheck поддерживает возможность генерации б
       arbitrary[Int] map (value => Leaf(value))
 
     def nodeGen: Gen[Node] =
-      listOf(treeGen) map (child => Node(child))
+      listOf(treeGen) map (children => Node(children))
 
 и убедимся что они рекурсивные:
 
@@ -770,7 +770,7 @@ Exception in thread "main" java.lang.StackOverflowError
     at org.scalacheck.Gen.$anonfun$flatMap$2(Gen.scala:80)
     at org.scalacheck.Gen$R.flatMap(Gen.scala:242)
     at org.scalacheck.Gen$R.flatMap$(Gen.scala:239)
-```
+``` 
 
 Мы не генерируем несколько нод сразу, но если генерируем, то с бесконечной
 вложенностью. Эту вложенность нам следует сделать конечной. Использование
