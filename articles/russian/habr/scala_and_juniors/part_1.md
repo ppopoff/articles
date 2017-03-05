@@ -441,12 +441,9 @@ Scala — язык объектно-ориентированный. Да, с п�
     val dog = ("Rex", 13)
     val olderDog = tuple.copy(_2 = 14)
 
-Об использовании кортежей [в Haskell](tuples_in_haskell) и
-[SML](tuples_in_haskell) вы можете прочитать если перейдете по ссылкам
-
-[tuples_in_haskell]: http://stackoverflow.com/questions/15558278/how-to-get-nth-element-from-a-10-tuple-in-haskell
-[tuples_in_sml]: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/lecture3.htm
-
+Об [использовании кортежей в Haskell](http://stackoverflow.com/questions/15558278/how-to-get-nth-element-from-a-10-tuple-in-haskell)
+и [SML](http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/lecture3.htm)
+вы можете прочитать если перейдете по ссылкам.
 
 В реальности, использование кортежей не есть лучший способ представления
 координат (во всяком случае в Scala). В Scala для этого лучше использовать
