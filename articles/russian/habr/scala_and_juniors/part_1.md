@@ -76,10 +76,8 @@ C++ или Java, многие идиомы Scala являются непонят
  - вы абстрагируетесь над Коллекцией[Коллекций, СКоллекциями[Упс]]
  - вы добавляете дополнительную сематнтическую информацию к существующему типу
 
-Больше примеров вы можете найти [здесь](type-aliases), просто промотайте чуть
-ниже до раздела с примерами.
-
-[type-aliases]: http://www.scala-lang.org/files/archive/spec/2.12/04-basic-declarations-and-definitions.html#type-declarations-and-type-aliases
+Больше примеров вы можете найти [здесь](http://www.scala-lang.org/files/archive/spec/2.12/04-basic-declarations-and-definitions.html#type-declarations-and-type-aliases),
+просто промотайте чуть ниже до раздела с примерами.
 
 
 ## Еще раз о присваивании
@@ -284,16 +282,13 @@ Option, и это... “For comprehension”.
 Наличие кортежей (tuples) — замечательнейшая особенность ряда функциональных (и
 не только) языков. В функциональных языках кортежи очень удобно использовать
 аналогично записям (records). Описываем кортеж с нужными данными и оборачиваем
-в новый тип, например, используя `newtype` в [Haskell](haskell_newtype). В
-чисто функциональных языках без кортежей никуда: они позволяют замечательно
-представлять словари (dictionaries), без них было [конволюция](convolution) была
+в новый тип, например, используя `newtype` в [Haskell](https://wiki.haskell.org/Newtype).
+В чисто функциональных языках без кортежей никуда: они позволяют замечательно
+представлять словари (dictionaries), без них было [конволюция](https://en.wikipedia.org/wiki/Convolution_(computer_science)) была
 бы менее наглядной.
 
 > В некоторых языках, таких как Erlang, записи появились позже
 > кортежей. Более того, записи (records) в Erlang так же являются кортежами.
-
-[haskell_newtype]: https://wiki.haskell.org/Newtype
-[convolution]: https://en.wikipedia.org/wiki/Convolution_(computer_science)
 
 Scala — язык объектно-ориентированный. Да, с поддержкой элементов
 функционального программирования. Уверен, что многие со мной не согласятся, но
