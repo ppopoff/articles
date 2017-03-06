@@ -7,6 +7,8 @@ TODO: Recurse if you can. As fast as a loop
 TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
 коллекций
 
+TODO: Structural types
+
 В этой статье мы продолжим знакомство с ошибками которые делают начинающие
 скалисты: вы обязательно встретите раздел об изобретении велосипедов, не
 идиоматичную перегрузку конструкторов, а также подбор моих скромных рекомендаций
@@ -159,8 +161,30 @@ TODO:
 
 
 ## Неэффективное использование коллекций
+Очень часто, в коде можно увидеть эмуляцию функций стандартной библиотеки
+Scala. Приведу простой пример:
 
-TODO:
+    tvs.filter(tv.displaySize == 50.inches).headOption
+
+Тоже самое, только короче:
+
+    tvs.find(tv.displaySize == 50.inches)
+
+Подобный "антипаттерны" тоже не редкость :
+
+    list.size = 0  // плохо
+    list.isEmpty   // ok
+
+    !list.empty    // плохо
+    list.nonEmpty  // ok
+
+    tvs.filter(tv => !tv.supportsSkype)    // плохо
+    tvs.filterNot(tv => tv.supportsSkype)  // ok
+
+Неэффективному использованию коллекций можно было бы посвятить отдельную
+статью. К счастью, Павел Фатин
+[эту статью](https://pavelfatin.com/scala-collections-tips-and-tricks) уже
+написал.
 
 
 ## Переизобретение enumов
@@ -320,24 +344,20 @@ Scala, и поддержку вашего любимого текстового 
 которую должен прочесть каждый Scala разработчик. К сожалению, не всем хватает
 терпения, прочесть эту книгу до конца.
 
-### Статьи документации
-, пос вам ознакомиться со статьей
+### Официальная документация
+[Руководство по стилю Scala](http://docs.scala-lang.org/style/)
+
+### Статьи
 [Effective Scala](http://twitter.github.io/effectivescala/).
+[Scala Collections Tips and Tricks Павла Фатина](https://pavelfatin.com/scala-collections-tips-and-tricks/)
 
 ### Видео
  - [Scala with style](https://www.youtube.com/watch?v=kkTFx3-duc8) —
  - [Martin Odersky, Scala -- the Simple Parts](https://www.youtube.com/watch?v=ecekSCX3B4Q)
+ - [Daniel Spiewak, May Your Data Ever Be Coherent](https://youtu.be/gVXt1RG_yN0)
 
 [Видео](https://www.youtube.com/watch?v=WDaw2yXAa50), посвященное подробному
 разбору, "for comprehensions".
-
-
-  TODO: добавить еще литературы
-   - Scala with style
-   - May your data ever be coherent ???
-
-[effective-scala]:
-
 
 
 ## Благодарности
@@ -349,5 +369,5 @@ Scala, и поддержку вашего любимого текстового 
 Спасибо EDU отделу @DataArt, а так же всем тем кто проходя наши курсы по
 Scala давал повод для написания данной статьи.
 
-Спасибо вам, уважаемые читатели, что дочитали до конца
+Спасибо вам, уважаемые читатели, что дочитали до конца.
 
