@@ -1,14 +1,5 @@
 **Часть 2. Ошибки, рекомендации и пожелания**
 
-TODO: Добавить паравозики don't pack to much into a single expression
-
-TODO: Recurse if you can. As fast as a loop
-
-TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
-коллекций
-
-TODO: Structural types
-
 В этой статье мы продолжим знакомство с ошибками которые делают начинающие
 скалисты: вы обязательно встретите раздел об изобретении велосипедов, не
 идиоматичную перегрузку конструкторов, а также подбор моих скромных рекомендаций
@@ -20,6 +11,59 @@ TODO: Structural types
  - [Часть 2](#)
 
 <cut text="Читать про то что осталось →">
+
+
+TODO: Recurse if you can. As fast as a loop
+
+TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
+коллекций
+
+TODO: Structural types
+
+
+## О поездах...
+Или, не упаковывайте все в одно выражение. В Scala практически все является
+выражением, и даже если что-то возвращает `Unit` вы всегда может полуичть на
+выходе ваш `()`. После длительного программирования на языках где превалируют
+утвержения (statemets), у многих из нас (я не являюсь исключением), превалирует
+желание запихнуть все в одно выражение, сделав длинный-длинный паравозик. Вот 
+вам пример, который я нагло утащил из Effective Scala:
+
+    val votes = Seq(("scala", 1),
+                    ("java", 4),
+                    ("scala", 10),
+                    ("scala", 1),
+                    ("python", 10))
+
+Большой и длинный паравозик:
+	
+    // Все понятно? легко читается?
+    val orderedVotes = votes
+      .groupBy(_._1)
+      .map { case (which, counts) => 
+        (which, counts.foldLeft(0)(_ + _._2))
+      }.toSeq
+      .sortBy(_._2)
+      .reverse
+	  
+Выражение разбито на составляющие:
+
+    val votesByLang =
+      votes groupBy { case (lang, _) => lang }
+
+    val sumByLang =
+      votesByLang map { case (lang, counts) =>
+
+    val countsOnly = counts map { case (_, count) => count }
+      (lang, countsOnly.sum)
+    }
+
+    val orderedVotes = sumByLang.toSeq
+      .sortBy { case (_, count) => count }
+      .reverse
+
+Особенно активно "паравозики" используются в Apache Spark.
+
 
 ## О генераторах списков
 Главное, что вам следует знать про генераторы списков, или, как их еще
@@ -153,7 +197,7 @@ Java или концепцией Beans, советуем [ознакомитьс
       def withUpdatedName(newName: String) = Person(newName, age)
     }
 
-Каждый `case class` поддерживает метод `copy`
+Каждый `case class`, так же как и любой кортеж поддерживает метод `copy`
 
 ## О Линзах
 
