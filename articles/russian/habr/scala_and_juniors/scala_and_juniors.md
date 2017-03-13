@@ -108,6 +108,10 @@ Haskell.
     3> Third(Tuple).
     4
 
+**Python**
+А вот вам пример не из функционального языка
+TODO: пример с шуткой природы по имени питон
+
 А теперь давайте применим полученные знания к **Scala**
 
     // предположим у нас есть прямоугольник
@@ -178,11 +182,122 @@ Haskell.
 
     option getOrElse default
 
+В scala существует еще один механизм который заметно облегчает работу с Option, и это...
+For comprehension
+
+
+    val ox = Some(1)
+    val oy = Some(2)
+    val oz = Some(3)
+
+    for (x <- ox; y <- oy; z <- oz)
+      yield x + y + z
+
+
+    // res0: Option[Int] = 6
+
+И если кто-то из этих ребят внезапно стает равным None
+
+  TODO: показать что будет
 
 ## Option и flow
 
     TODO: Использовать Optoinы как null-check плохо.
     Гуаве гугловской, мать ее, предать привет
+
+
+#Forcomps
+
+## For-comprehensions and futures
+
+Do you remember a stuff about options? Yep not it's a time to cover up more details:
+
+    import scala.concurrent._
+    import ExecutionContext.Implcits.global
+    import duration._
+
+    val f1 = Future { Thread sleep 10000; 6 }
+    val f1 = Future { Thread sleep 10000; 5 }
+
+    val f3 = for {
+      x <- f1
+      y <- f2
+    } yield x * y
+
+    f3.value6
+
+What about other types like Either Monad:?
+
+    val e1: Either[String, Int] = Right(6)
+    val e2: Either[String, Int] = Right(7)
+
+    for {
+      x <- e1.right
+      x <- e2.right
+    } yield x * y
+
+
+
+Generator
+=========
+putting stuff out of the container:
+it has an implicit pattern matching
+
+    for (_ <- 1 to 5) println("hi")
+
+Вы заметили нижнее подчеркивание? Да мы только что сматчили переменную
+
+    object Even {
+      def unapply(x: Int): Boolean = x % 2 == 0
+    }
+
+    for {
+      x @ Even() <- 1 to too
+    } yield x
+
+
+TODO: Pattern matching secrets
+
+
+    The same for tuple
+
+
+    for ((key, value) <- hashMap)) {
+      yield key
+    }
+
+TODO:
+AND THE MOST INTERESTING STUFF.. IS VAL IS ALSO A PATTERN MATCHING
+
+
+Gurads (if)
+=======================
+
+for {
+  i <- 1 to 10
+  j <- 1 to 10
+  if i % 3 == 0 || j % 3 == 0
+  k <- 1 to 10
+  if i * j * k % 2 == 0
+} yield i * j * k
+
+
+TODO: Tell about withFilter it's lazy goddamit
+==============================================
+
+inline assiGnment
+
+val mults = for {
+  i <- 1 to 5
+  _ = println(s"i us $i") // or logger.info(s"$i") - SIDE EFFECT
+  j <- 1 to 5
+} yield i * j
+
+Если поделим на ноль упадет быстрее. Показать на время
+
+FORS AND DO NOTATION IN HASKELL
+
+
 
 
 ## Может быть список?
@@ -197,8 +312,15 @@ List? Может :) Конечно же с точки зрения теории 
 
 
 # Lists
+Option has a 'get' list has a 'head' it also has 'init' and 'tail'
+If those operatoions are performed on empty list you will get:
 
-    TODO:
+init: java.lang.UnsupportedOperationException: empty init
+head: java.lang.NoSuchElementException: head of empty list
+tail: java.lang.UnsupportedOperationException: tail of empty list
+
+
+
 
 А знаете ли вы, один из самых лучших способов выстрелить себе в голову при
 работе со списками? Позвать `list.head` (судьба Курта Кобейна не заставит
@@ -220,7 +342,6 @@ List? Может :) Конечно же с точки зрения теории 
 
     TODO: Алиасить монстроту надо
 
-
 Опытные разарботчики грешат следующим:
 
 (перегрузка функций когда можно использовать default параметры)
@@ -239,6 +360,32 @@ List? Может :) Конечно же с точки зрения теории 
 читабельнее и осмысленнее, возможно, вы даже уложитесь в волшебные 80 колонок.
 
 
+# Shooting youtself in the foot
+
+## Не надо тут extends App
+Рассказать про Delayed init
+
+
+## annotation.implcitNotFound
+
+## Не используйте структурные типы: structual types
+
+    val s = new Object { val name = Foo }
+    s.name
+
+Что происходит внутри?
+  РЕФЛЕКСИЯ
+
+
+
+Problems with implicit
+
+Problems with partial applications
+
+
+# Заключение
+Что я этим хотел сказать
+
 
 
 # Литература
@@ -254,4 +401,5 @@ List? Может :) Конечно же с точки зрения теории 
 [tuples_in_sml]: http://www.cs.cornell.edu/courses/cs312/2004fa/lectures/lecture3.htm
 [scala_with_style]: https://www.youtube.com/watch?v=kkTFx3-duc8
 [coherent_data]: https://www.youtube.com/watch?v=gVXt1RG_yN0
+[scala-and-dotty-puzzlers]: https://youtu.be/Ay-9aanosUM
 [databricks-style-guide]: https://github.com/databricks/scala-style-guide
