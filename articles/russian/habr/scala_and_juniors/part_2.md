@@ -2,12 +2,45 @@
 
 TODO: Добавить паравозики don't pack to much into a single expression
 
-TODO: Recurse if you can. As fast as a loop
+TODO: Limit use of loop.
+Recurse if you can. As fast as a loop
+why scala is using while but not for.
+
+
 
 TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
 коллекций
 
 TODO: Structural types
+
+
+TODO: return statements/ метки
+
+TODO: operators
+
+TODO: exceptions
+
+TODO: TYPES!
+
+boolean params Boools
+overuse of tupples mean that
+
+null
+
+
+Failure handling:
+  Try Either and Validation
+  todo:
+
+    val first = Try(Console.readLine("enter a number"))
+    val second = Try(Console.readLIne("another number"))
+
+    val sum: Try[Int] = for { f <- first; s <- second } yield f.toInt + s.toInt
+
+  todo: add validation monad
+
+TODO operator notation
+
 
 В этой статье мы продолжим знакомство с ошибками которые делают начинающие
 скалисты: вы обязательно встретите раздел об изобретении велосипедов, не
@@ -363,11 +396,11 @@ Scala, и поддержку вашего любимого текстового 
 ## Благодарности
 Спасибо Владу Ледовских за вычитку. Особую благодарность хотел бы выразить
 @firegurafiku за вычитку и правку текста, а так же за помощь с разделом
-повященным `typedef`. Хочу сказать отдельное спасибо @primetalk за
-внесение уточнений в изначальный текст.
-
+повященным `typedef` первой части статьи. Хочу сказать отдельное спасибо
+@primetalk за внесение уточнений в изначальный текст. Большое спасибо @senia,
+за найденные неточности.
 Спасибо EDU отделу @DataArt, а так же всем тем кто проходя наши курсы по
 Scala давал повод для написания данной статьи.
-
+Если вас я здесь упомянуть забыл, вам тоже спасибо.
 Спасибо вам, уважаемые читатели, что дочитали до конца.
 
