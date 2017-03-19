@@ -1,32 +1,157 @@
-**Часть 2. Ошибки, рекомендации и пожелания**
+**Часть 2. Не пойми какая**
 
 В этой статье мы продолжим знакомство с ошибками которые делают начинающие
-скалисты: вы обязательно встретите раздел об изобретении велосипедов, не
-идиоматичную перегрузку конструкторов, а также подбор моих скромных рекомендаций
-касающихся хозяйственной части.
+скалисты и обязательно их повторим, и если что-то можно сделать совсем
+омерзительно, то обязательно воспользуемся сей прекрасной возможностью и
+сделаем еще гаже. Так же я поделюсь своими взглядами на инструментарий и
+попробую разжечь "Holly war".
+
+<cut text="Let's get it started →">
+
 
 **Структура цикла**
 
- - [Часть 1](#)
- - [Часть 2](#)
-
-<cut text="Читать про то что осталось →">
+ - [Часть 1. Функциональная](https://habrahabr.ru/post/323706/)
+ - [Часть 2. Эта](#)
 
 
-TODO: Recurse if you can. As fast as a loop
+Собрать и структурировать первую часть было намного проще. Мне даже не
+приходилось так долго кропотливо и старательно думать. Думать я вообще не очень
+люблю (именно поэтому предпочитаю Java, Scala), однако задуматься пришлось.
+Здесь вы найдете заметки посвященные ООП, инструментарию и другим мелочам.
+Предлагаю начать с того что меня больше всего раздражает, а больше всего в мире
+Scala меня раздражают:
 
-TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
-коллекций
 
-TODO: Structural types
+## Перегрузки
+В Scala существует возможность перегрузки конструкторов для классов. И это —
+не лучший способ решить проблему. Скажу больше, это — *не идиоматичный* способ
+решения проблемы. Если говорить о практике, эта функция полезна, если вы
+используете Java-reflection и ваш Scala-код вызывается из Java или вам
+необходимо такое поведение (а почему бы в таком случае не сделать Builder)?
+В остальных случаях лучшая стратегия — создание companion-object и определение
+в нем нескольких методов `apply`.
+Наиболее примечательны случаи перегрузки конструкторов из-за незнания о
+[параметрах по-умолчанию](default-parameters) (default parameters).
+
+[default-parameters](http://docs.scala-lang.org/tutorials/tour/default-parameter-values.html)
+
+Совсем недавно, я стал свидетелем следующего безобразия:
+
+    // Все включено!
+    case class Monster (pos: Position, health: Int, weapon: Weapon) {
+      def this(pos: Position) = this(pos, 100, new Claws)
+      def this(pos: Position, weapon: Weapon) = this(pos, 100, weapon)
+    }
+
+Ларчик открывается проще:
+
+    case class Monster(
+      pos: Position,
+      health: Short = 100,
+      weapon: Weapon = new Claws
+    )
+
+Хотите наградить вашего монстра базукой? Не проблема:
+
+    val dima = Monster(Position(300, 300, 20), weapon = new Bazooka)
+
+Мы сделали мир лучше, монстра миролюбивее, и перестали перегружать все что
+движется. Миролюбивее? Определенно. Ведь базука, это еще и музыкальный
+инструмент:
+
+<img style="width: 300px; float:left;"
+src="https://habrastorage.org/files/da7/8c8/61e/da78c861e02d4cb6b190c93768e734a3.jpg"/>
 
 
-## О поездах...
+## Scala Beans
+Scala предоставляет отличное взаимодействие с Java. Она также способна
+облегчить вам жизнь при дизайне так называемых Beans. Если вы не знакомы с
+Java или концепцией Beans, советуем [ознакомиться](java-beans).
+
+В Scala имеется механизм, схожий с [Project Lombok](project-lombok). Он
+называется `BeanProperty` и является частью стандартной библиотеки. Все, что
+вам нужно, — создать bean и добавить аннотацию `BeanProperty` к каждому полю,
+для которого хотите создать getter или setter. [Здесь](bean-property-alvin) вы
+можете подробнее прочитать об использовании данного свойства. Документацию к
+`BeanProperty` вы можете найти [здесь](bean-property-doc).
+
+Если вы хотите создать getter и setter для переменной логического типа,
+[данный класс](bool-prop) может вам в этом помочь: на выходе вы получите метод
+вида `isProperty`.
+
+[java-beans]: https://en.wikipedia.org/wiki/JavaBeans
+[project-lombok]: https://projectlombok.org/
+[bean-property-doc]: https://www.scala-lang.org/api/2.12.0/scala/beans/BeanProperty.html
+[bean-property-alvin]: http://alvinalexander.com/scala/how-to-create-scala-javabeans-beanproperty-java-libraries
+[bean-property-illustrated]: https://daily-scala.blogspot.ru/2009/09/beanproperties.html
+[bool-prop]: http://www.scala-lang.org/api/2.12.0/scala/beans/BooleanBeanProperty.html
+
+
+
+
+
+## О case классах
+А начнем мы с case class-ов. Если вы хотите убедить джависта в преимуществах
+Scala, вы знаете с чего начать. Появление case class-ов в Scala это прорыв для
+индустриальных языков (коим Scala к счастью является). В чем же их основное
+преимущество? Правильно, в их неизменяемости (immutability), а также наличию
+`equals`, `toString` и `hashCode` (я вас умоляю, кому они нужны). Безусловно
+любителей особо тяжелых извращений это не останавливает:
+
+    case class Person(var name: String, var age: Int)
+
+Ниже приведен диалог с создателем сего шедевра:
+
+ — Что такое `case class` и зачем он нужен?
+ — Это класс такой чтобы в одну строчку можно было писать.
+ — Хорошо, что у тебя здесь делает `var`?
+ — Ну как, я объявляю переменную.
+ — А зачем тебе переменная?
+ — Ну а как ее менять?
+
+Имеем, глубокий Junior не понимает что такое имутабельность. С разработчиками
+повыше уровнем, не менее интересно. Они прекрасно осознают что такое
+иммутабельность:
+
+    case class Person (name: String, age: Int) {
+      def updatedAge(newAge: Int) = Person(name, newAge)
+      def updatedName(newName: String) = Person(newName, age)
+    }
+
+Однако про метод `copy` не знают. Подобное видел не один раз, чего уж там, в
+свое время я подобное творил. Работает `copy` аналогично тому, что определен
+для кортежей:
+
+    // обновили возраст, получили новый инстанс
+    person.copy(age = 32)
+
+
+## О размерах case class-ов
+И все бы ничего, так еще case class-ы имеют свойство немерено раздуваться
+по 15-20 элементов в каждом. Есть случаи, когда этому есть оправдание: у вас
+есть API спроектированный глубокими идиотами или структура действительно плоская
+и не способна к агрегации. Хотя чаще всего приходится иметь дело с первым
+вариантом. Однако существуют другие причины монструозности размеров некоторых
+case class-ов: для того чтобы обновить вложенное поле глубоко запрятанного
+вглубь иерархии класса, приходится очень сильно помучиться, и поэтому многие
+предпочитают денормализовать case class-ы. И тут на помощь приходят линзы. Для
+того чтобы осветить линзы потребуется целая статья
+
+TODO: про линзы показать
+                ссылка на статью
+
+
+
+
+
+## О поездах
+В мире Java поезда имеют символическое значение,
 Или, не упаковывайте все в одно выражение. В Scala практически все является
 выражением, и даже если что-то возвращает `Unit` вы всегда может полуичть на
 выходе ваш `()`. После длительного программирования на языках где превалируют
 утвержения (statemets), у многих из нас (я не являюсь исключением), превалирует
-желание запихнуть все в одно выражение, сделав длинный-длинный паравозик. Вот 
+желание запихнуть все в одно выражение, сделав длинный-длинный паравозик. Вот
 вам пример, который я нагло утащил из Effective Scala:
 
     val votes = Seq(("scala", 1),
@@ -36,16 +161,16 @@ TODO: Structural types
                     ("python", 10))
 
 Большой и длинный паравозик:
-	
+
     // Все понятно? легко читается?
     val orderedVotes = votes
       .groupBy(_._1)
-      .map { case (which, counts) => 
+      .map { case (which, counts) =>
         (which, counts.foldLeft(0)(_ + _._2))
       }.toSeq
       .sortBy(_._2)
       .reverse
-	  
+
 Выражение разбито на составляющие:
 
     val votesByLang =
@@ -63,6 +188,60 @@ TODO: Structural types
       .reverse
 
 Особенно активно "паравозики" используются в Apache Spark.
+
+
+TODO: Recurse if you can. As fast as a loop
+
+TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
+коллекций
+
+TODO: Structural types
+
+TODO: Добавить паравозики don't pack to much into a single expression
+
+TODO: Limit use of loop.
+Recurse if you can. As fast as a loop
+why scala is using while but not for.
+
+
+
+TODO: Узнать у Антона умеет ли ScalaIde трекать неоптимальные вызовы
+коллекций
+
+TODO: Structural types
+
+
+TODO: return statements/ метки
+
+TODO: operators
+
+TODO: exceptions
+
+TODO: TYPES!
+
+boolean params Boools
+overuse of tupples mean that
+
+null
+
+
+Failure handling:
+  Try Either and Validation
+  todo:
+
+    val first = Try(Console.readLine("enter a number"))
+    val second = Try(Console.readLIne("another number"))
+
+    val sum: Try[Int] = for { f <- first; s <- second } yield f.toInt + s.toInt
+
+  todo: add validation monad
+
+TODO operator notation
+
+
+
+
+
 
 
 ## О генераторах списков
@@ -123,85 +302,6 @@ TODO: Structural types
 [app-doc]: http://www.scala-lang.org/api/current/scala/App.html
 [delayed-init]: http://www.scala-lang.org/api/current/scala/DelayedInit.html
 
-
-## Перегрузки
-В Scala существует возможность перегрузки конструкторов для классов. И это —
-не лучший способ решить проблему. Скажу больше, это — *не идиоматичный* способ
-решения проблемы. Если говорить о практике, эта функция полезна, если ваш
-Scala-код вызывается из Java, и вам необходимо такое поведение (а почему бы в
-таком случае не сделать Builder)? В остальных случаях лучшая стратегия —
-создание companion-object и определение в нем нескольких методов `apply`.
-Наиболее примечательны случаи перегрузки конструкторов из-за незнания о
-[параметрах по-умолчанию](default-parameters) (default parameters).
-
-[default-parameters](http://docs.scala-lang.org/tutorials/tour/default-parameter-values.html)
-
-Совсем недавно, я стал свидетелем следующего безобразия:
-
-    // Все включено!
-    case class Monster (pos: Position, health: Int, weapon: Weapon) {
-      def this(pos: Position) = this(pos, 100, new Claws)
-      def this(pos: Position, weapon: Weapon) = this(pos, 100, weapon)
-    }
-
-Ларчик открывается проще:
-
-    case class Monster(
-      pos: Position,
-      health: Short = 100,
-      weapon: Weapon = new Claws
-    )
-
-Хотите наградить вашего монстра базукой? Не проблема:
-
-    val dima = Monster(Position(300, 300, 20), weapon = new Bazooka)
-
-Мы сделали мир лучше, монстра миролюбивее, и перестали перегружать все что
-движется. Миролюбивее? Определенно. Ведь базука, это еще и музыкальный
-инструмент:
-
-<img src="https://habrastorage.org/files/da7/8c8/61e/da78c861e02d4cb6b190c93768e734a3.jpg"/>
-
-
-## Scala Beans
-Scala предоставляет отличное взаимодействие с Java. Она также способна
-облегчить вам жизнь при дизайне так называемых Beans. Если вы не знакомы с
-Java или концепцией Beans, советуем [ознакомиться](java-beans).
-
-В Scala имеется механизм, схожий с [Project Lombok](project-lombok). Он
-называется `BeanProperty` и является частью стандартной библиотеки. Все, что
-вам нужно, — создать bean и добавить аннотацию `BeanProperty` к каждому полю,
-для которого хотите создать getter или setter. [Здесь](bean-property-alvin) вы
-можете подробнее прочитать об использовании данного свойства. Документацию к
-`BeanProperty` вы можете найти [здесь](bean-property-doc).
-
-Если вы хотите создать getter и setter для переменной логического типа,
-[данный класс](bool-prop) может вам в этом помочь: на выходе вы получите метод
-вида `isProperty`.
-
-[java-beans]: https://en.wikipedia.org/wiki/JavaBeans
-[project-lombok]: https://projectlombok.org/
-[bean-property-doc]: https://www.scala-lang.org/api/2.12.0/scala/beans/BeanProperty.html
-[bean-property-alvin]: http://alvinalexander.com/scala/how-to-create-scala-javabeans-beanproperty-java-libraries
-[bean-property-illustrated]: https://daily-scala.blogspot.ru/2009/09/beanproperties.html
-[bool-prop]: http://www.scala-lang.org/api/2.12.0/scala/beans/BooleanBeanProperty.html
-
-
-## О case классах
-Появление case classов в Scala это прорыв для индустриальных языков (коим Scala
-к счастью является). В чем их основное преимущество? Правильно, в их
-неизменяемости иммутабельности. И многие программисты это осознают:
-
-    case class Person (name: String, age: Int) {
-      def withUpdatedAge(newAge: Int) = Person(name, newAge)
-      def withUpdatedName(newName: String) = Person(newName, age)
-    }
-
-Каждый `case class`, так же как и любой кортеж поддерживает метод `copy`
-
-## О Линзах
-
-TODO:
 
 
 ## Неэффективное использование коллекций
@@ -407,11 +507,11 @@ Scala, и поддержку вашего любимого текстового 
 ## Благодарности
 Спасибо Владу Ледовских за вычитку. Особую благодарность хотел бы выразить
 @firegurafiku за вычитку и правку текста, а так же за помощь с разделом
-повященным `typedef`. Хочу сказать отдельное спасибо @primetalk за
-внесение уточнений в изначальный текст.
-
+повященным `typedef` первой части статьи. Хочу сказать отдельное спасибо
+@primetalk за внесение уточнений в изначальный текст. Большое спасибо @senia,
+за найденные неточности.
 Спасибо EDU отделу @DataArt, а так же всем тем кто проходя наши курсы по
 Scala давал повод для написания данной статьи.
-
+Если вас я здесь упомянуть забыл, вам тоже спасибо.
 Спасибо вам, уважаемые читатели, что дочитали до конца.
 
