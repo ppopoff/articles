@@ -703,24 +703,26 @@ Scala, и поддержку вашего любимого текстового 
 
 ### Книги
 [Книга](https://www.amazon.com/Programming-Scala-Updated-2-12/dp/0981531687),
-которую должен прочесть каждый Scala разработчик. К сожалению, не всем хватает
-терпения, прочесть эту книгу до конца.
+которую должен прочесть каждый Scala разработчик. К сожалению, терпения хватает
+не всем, однако, работа стоит затраченных усилий.
 
 ### Официальная документация
 [Руководство по стилю Scala](http://docs.scala-lang.org/style/)
 
 ### Статьи
-[Effective Scala](http://twitter.github.io/effectivescala/).
-[Scala Collections Tips and Tricks Павла Фатина](https://pavelfatin.com/scala-collections-tips-and-tricks/)
+ - [Effective Scala](http://twitter.github.io/effectivescala/) для которой
+   существует и [перевод](http://twitter.github.io/effectivescala/index-ru.html)
+   на русский, хотя я, безусловно, советую вам ознакомиться с оригиналом.
+
+ - [Scala Collections Tips and Tricks Павла Фатина](https://pavelfatin.com/scala-collections-tips-and-tricks/),
+   и [перевод](TODO), недавно опубликованный мной на Хабре.
 
 ### Видео
  - [Scala with style](https://www.youtube.com/watch?v=kkTFx3-duc8) —
  - [Martin Odersky, Scala -- the Simple Parts](https://www.youtube.com/watch?v=ecekSCX3B4Q)
  - [Daniel Spiewak, May Your Data Ever Be Coherent](https://youtu.be/gVXt1RG_yN0)
-
-[Видео](https://www.youtube.com/watch?v=WDaw2yXAa50), посвященное подробному
-разбору, "for comprehensions".
-
+ - [For: What is it good for?](https://www.youtube.com/watch?v=WDaw2yXAa50) --
+   выступление посвященное подробному разбору, "for comprehensions".
 
 
 
@@ -730,8 +732,32 @@ Scala, и поддержку вашего любимого текстового 
 повященным `typedef` первой части статьи. Хочу сказать отдельное спасибо
 @primetalk за внесение уточнений в изначальный текст. Большое спасибо @senia,
 за найденные неточности.
+
 Спасибо EDU отделу @DataArt, а так же всем тем кто проходя наши курсы по
-Scala давал повод для написания данной статьи.
-Если вас я здесь упомянуть забыл, вам тоже спасибо.
-Спасибо вам, уважаемые читатели, что дочитали до конца.
+Scala давал повод для написания данной статьи. Если вас я здесь упомянуть забыл,
+вам тоже спасибо. Спасибо вам, уважаемые читатели, что дочитали до конца.
+
+
+
+TODOшечки:
+
+Рассказать про салат
+https://coderwall.com/p/_dxhza/scala-salad-anti-pattern
+
+Про Null
+http://alvinalexander.com/scala/best-practice-eliminate-null-values-from-code-scala-idioms
+http://alvinalexander.com/scala/best-practice-option-some-none-pattern-scala-idioms
+
+
+General:
+https://www.quora.com/What-are-some-bad-practices-in-functional-programming
+http://stackoverflow.com/questions/15848856/are-there-any-documented-anti-patterns-for-functional-programming
+https://github.com/alexandru/scala-best-practices/blob/master/sections/2-language-rules.md
+
+
+Exceptions:
+http://stackoverflow.com/questions/13012149/is-the-use-of-exceptions-a-bad-practice-in-scala
+http://stackoverflow.com/questions/12886285/throwing-exceptions-in-scala-what-is-the-official-rule
+Add more information about the Validation monad
+
 
