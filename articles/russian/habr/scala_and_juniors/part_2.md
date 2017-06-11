@@ -1,11 +1,12 @@
-**Часть 2. Не пойми какая**
-TODO: не признаваться в том что не очень люблю думать.
-TODO: убрать омерзительно и гаже
-В этой статье мы продолжим знакомство с ошибками которые делают начинающие
-скалисты и обязательно их повторим (а как иначе?), и если что-то можно сделать
-совсем омерзительно, то обязательно воспользуемся этой возможностью и
-сделаем гаже. В конце статьи я поделюсь своими взглядами на инструментарий и
-попробую разжечь "Holly war".
+**Часть 2. Все в одном**
+
+В этой части мы обсудим ряд скалических идиом, которые я не смог идеологически
+упаковать в [первую часть](https://habrahabr.ru/post/323706/). Также мы затронем
+
+Собрать и структурировать первую часть было намного проще. Мне даже не
+приходилось так долго кропотливо и старательно думать. Здесь вы найдете заметки
+посвященные ООП, инструментарию и другим мелочам. А начнем мы с простого:
+
 
 <cut text="Let's get it started →">
 
@@ -14,13 +15,6 @@ TODO: убрать омерзительно и гаже
 
  - [Часть 1. Функциональная](https://habrahabr.ru/post/323706/)
  - [Часть 2. Эта](#)
-
-
-Собрать и структурировать первую часть было намного проще. Мне даже не
-приходилось так долго кропотливо и старательно думать. Думать я вообще не очень
-люблю (именно поэтому предпочитаю Java, Scala), однако задуматься пришлось.
-Здесь вы найдете заметки посвященные ООП, инструментарию и другим мелочам.
-Предлагаю начать с того что меня больше всего раздражает:
 
 
 ## Длина выражений
@@ -573,6 +567,29 @@ Failure handling:
   todo: add validation monad
 
 
+TODO:
+Рассказать про салат
+https://coderwall.com/p/_dxhza/scala-salad-anti-pattern
+
+Про Null
+http://alvinalexander.com/scala/best-practice-eliminate-null-values-from-code-scala-idioms
+http://alvinalexander.com/scala/best-practice-option-some-none-pattern-scala-idioms
+
+General:
+https://www.quora.com/What-are-some-bad-practices-in-functional-programming
+http://stackoverflow.com/questions/15848856/are-there-any-documented-anti-patterns-for-functional-programming
+https://github.com/alexandru/scala-best-practices/blob/master/sections/2-language-rules.md
+
+
+Exceptions:
+http://stackoverflow.com/questions/13012149/is-the-use-of-exceptions-a-bad-practice-in-scala
+http://stackoverflow.com/questions/12886285/throwing-exceptions-in-scala-what-is-the-official-rule
+Add more information about the Validation monad
+
+
+TODO:
+рассказать про вред получения элемента по индексу ВООБЩЕ
+
 
 
 ## ? extends App
@@ -713,7 +730,6 @@ Scala, и поддержку вашего любимого текстового 
  - [Effective Scala](http://twitter.github.io/effectivescala/) для которой
    существует и [перевод](http://twitter.github.io/effectivescala/index-ru.html)
    на русский, хотя я, безусловно, советую вам ознакомиться с оригиналом.
-
  - [Scala Collections Tips and Tricks Павла Фатина](https://pavelfatin.com/scala-collections-tips-and-tricks/),
    и [перевод](TODO), недавно опубликованный мной на Хабре.
 
@@ -725,7 +741,6 @@ Scala, и поддержку вашего любимого текстового 
    выступление посвященное подробному разбору, "for comprehensions".
 
 
-
 ## Благодарности
 Спасибо Владу Ледовских за вычитку. Особую благодарность хотел бы выразить
 @firegurafiku за вычитку и правку текста, а так же за помощь с разделом
@@ -734,30 +749,6 @@ Scala, и поддержку вашего любимого текстового 
 за найденные неточности.
 
 Спасибо EDU отделу @DataArt, а так же всем тем кто проходя наши курсы по
-Scala давал повод для написания данной статьи. Если вас я здесь упомянуть забыл,
-вам тоже спасибо. Спасибо вам, уважаемые читатели, что дочитали до конца.
-
-
-
-TODOшечки:
-
-Рассказать про салат
-https://coderwall.com/p/_dxhza/scala-salad-anti-pattern
-
-Про Null
-http://alvinalexander.com/scala/best-practice-eliminate-null-values-from-code-scala-idioms
-http://alvinalexander.com/scala/best-practice-option-some-none-pattern-scala-idioms
-
-
-General:
-https://www.quora.com/What-are-some-bad-practices-in-functional-programming
-http://stackoverflow.com/questions/15848856/are-there-any-documented-anti-patterns-for-functional-programming
-https://github.com/alexandru/scala-best-practices/blob/master/sections/2-language-rules.md
-
-
-Exceptions:
-http://stackoverflow.com/questions/13012149/is-the-use-of-exceptions-a-bad-practice-in-scala
-http://stackoverflow.com/questions/12886285/throwing-exceptions-in-scala-what-is-the-official-rule
-Add more information about the Validation monad
-
+Scala давал повод для написания данной статьи. Спасибо вам, уважаемые читатели,
+за то, что дочитали (или хотя бы промотали) до конца.
 
