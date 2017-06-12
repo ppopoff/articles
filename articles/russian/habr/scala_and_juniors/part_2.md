@@ -467,15 +467,14 @@ Scala предоставляет отличное взаимодействие �
 ### Статьи
  - [Effective Scala](http://twitter.github.io/effectivescala/) для которой существует и [перевод](http://twitter.github.io/effectivescala/index-ru.html) на русский, хотя я, безусловно, советую вам ознакомиться с оригиналом.
  - [Scala Collections Tips and Tricks Павла Фатина](https://pavelfatin.com/scala-collections-tips-and-tricks/).
- - О том, чего лучше не делать в Scala очень доступно изложено (здесь)[https://github.com/alexandru/scala-best-practices/blob/master/sections/2-language-rules.md]
+ - О том, чего лучше не делать в Scala очень доступно изложено [здесь](https://github.com/alexandru/scala-best-practices/blob/master/sections/2-language-rules.md)
  - [Scala Collections Tips and Tricks](https://pavelfatin.com/scala-collections-tips-and-tricks)
 
 ### Видео
- - [Scala with style](https://www.youtube.com/watch?v=kkTFx3-duc8) —
- - [Martin Odersky, Scala -- the Simple Parts](https://www.youtube.com/watch?v=ecekSCX3B4Q)
+ - [Scala with style](https://www.youtube.com/watch?v=kkTFx3-duc8) — доклад создателя языка о том как идиоматично писать на Scala.
+ - [Martin Odersky, Scala — the Simple Parts](https://www.youtube.com/watch?v=ecekSCX3B4Q)
  - [Daniel Spiewak, May Your Data Ever Be Coherent](https://youtu.be/gVXt1RG_yN0)
- - [For: What is it good for?](https://www.youtube.com/watch?v=WDaw2yXAa50) --
-   выступление посвященное подробному разбору, "for comprehensions".
+ - [For: What is it good for?](https://www.youtube.com/watch?v=WDaw2yXAa50) — выступление посвященное подробному разбору, "for comprehensions".
 
 ## Благодарности
 Спасибо Владу Ледовских за вычитку. Особую благодарность хотел бы выразить @firegurafiku за вычитку и правку текста, а так же за помощь с разделом поcвященным `typedef` первой части статьи. Хочу сказать отдельное спасибо @primetalk за внесение уточнений в изначальный текст. Большое спасибо @senia, за найденные неточности.
