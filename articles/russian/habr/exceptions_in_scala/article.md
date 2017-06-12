@@ -38,4 +38,8 @@ TODO:
 https://coderwall.com/p/_dxhza/scala-salad-anti-pattern
 
 
+General:
+https://www.quora.com/What-are-some-bad-practices-in-functional-programming
+http://stackoverflow.com/questions/15848856/are-there-any-documented-anti-patterns-for-functional-programming
+
 
